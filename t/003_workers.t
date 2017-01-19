@@ -9,7 +9,7 @@ BEGIN {
         unless $ENV{TEST_SERVER};
 }
 
-use_ok( "Redis::DistLock" );
+use_ok( "Redis::Fast::DistLock" );
 
 my @hosts = qw( foo bar baz );
 my @rds;
@@ -17,7 +17,7 @@ my @rds;
 # connect multiple redis instances
 for my $n ( 0 .. $#hosts ) {
     my $host = $hosts[ $n ];
-    my $rd = Redis::DistLock->new(
+    my $rd = Redis::Fast::DistLock->new(
         servers => [ split( m!,!, $ENV{TEST_SERVER} ) ],
     );
 

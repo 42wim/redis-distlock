@@ -7,18 +7,18 @@ use Test::More;
 use lib qw( t/lib );
 use My::Redis;
 
-use_ok( "Redis::DistLock" );
+use_ok( "Redis::Fast::DistLock" );
 
 
 # version not recent enough
 ok( ! eval {
-    Redis::DistLock->new(
+    Redis::Fast::DistLock->new(
         servers => [ bless( { version => "1.2.3" }, "My::Redis" ) ]
     );
 }, "version check fail" );
 
 ok( eval {
-    Redis::DistLock->new(
+    Redis::Fast::DistLock->new(
         servers => [ bless( { version => "1.2.3" }, "My::Redis" ) ],
         version_check => 0,
     );
@@ -26,22 +26,22 @@ ok( eval {
 
 
 # exact version match
-ok( Redis::DistLock->new(
+ok( Redis::Fast::DistLock->new(
         servers => [ bless( { version => "2.6.12" }, "My::Redis" ) ],
 ), "version match" );
 
-ok( Redis::DistLock->new(
+ok( Redis::Fast::DistLock->new(
         servers => [ bless( { version => "2.6.12" }, "My::Redis" ) ],
         version_check => 0,
 ), "version match without check" );
 
 
 # higher version
-ok( Redis::DistLock->new(
+ok( Redis::Fast::DistLock->new(
         servers => [ bless( { version => "12.34.56" }, "My::Redis" ) ],
 ), "version way " );
 
-ok( Redis::DistLock->new(
+ok( Redis::Fast::DistLock->new(
         servers => [ bless( { version => "12.34.56" }, "My::Redis" ) ],
         version_check => 0,
 ), "version match without check" );

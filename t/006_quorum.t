@@ -7,7 +7,7 @@ use Test::More;
 use lib qw( t/lib );
 use My::Redis;
 
-use_ok( "Redis::DistLock" );
+use_ok( "Redis::Fast::DistLock" );
 
 my $redis = bless( { version => "2.6.12" }, "My::Redis" );
 
@@ -19,7 +19,7 @@ my @tests = (
 );
 
 for my $test ( @tests ) {
-    my $rd = Redis::DistLock->new(
+    my $rd = Redis::Fast::DistLock->new(
         servers => [ ( $redis ) x $test->[0] ],
     );
     ok( $rd->{quorum} == $test->[1], $test->[2] );

@@ -4,7 +4,7 @@ use warnings;
 
 use Test::More;
 
-use_ok( "Redis::DistLock" );
+use_ok( "Redis::Fast::DistLock" );
 
 done_testing();
 

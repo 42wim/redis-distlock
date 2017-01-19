@@ -1,11 +1,11 @@
 # NAME
 
-Redis::DistLock - Distributed lock manager using Redis
+Redis::Fast::DistLock - Distributed lock manager using Redis
 
 # SYNOPSIS
 
-    use Redis::DistLock;
-    my $rd = Redis::DistLock->new( servers => [qw[ localhost:6379 ]] );
+    use Redis::Fast::DistLock;
+    my $rd = Redis::Fast::DistLock->new( servers => [qw[ localhost:6379 ]] );
     my $mutex = $rd->lock( "foo", 10 );
     die( "failed to get a lock" )
         if ! $mutex;

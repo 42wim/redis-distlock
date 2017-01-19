@@ -1,4 +1,4 @@
-package Redis::DistLock;
+package Redis::Fast::DistLock;
 
 use strict;
 use warnings;
@@ -7,7 +7,7 @@ our $VERSION = '0.07';
 
 use Digest::SHA qw( sha1_hex );
 use MIME::Base64 qw( encode_base64 );
-use Redis;
+use Redis::Fast;
 use Time::HiRes qw( time );
 
 sub VERSION_CHECK()     { 1 }
@@ -65,7 +65,7 @@ sub new {
         # connect might fail
         my $redis = ref( $server )
                        ? $server
-                       : eval { Redis->new( server => $server, encoding => undef ) }
+                       : eval { Redis::Fast->new( server => $server, encoding => undef ) }
         ;
         unless ( $redis ) {
             $logger->( $@ );
@@ -191,12 +191,12 @@ __END__
 
 =head1 NAME
 
-Redis::DistLock - Distributed lock manager using Redis
+Redis::Fast::DistLock - Distributed lock manager using Redis
 
 =head1 SYNOPSIS
 
-  use Redis::DistLock;
-  my $rd = Redis::DistLock->new( servers => [qw[ localhost:6379 ]] );
+  use Redis::Fast::DistLock;
+  my $rd = Redis::Fast::DistLock->new( servers => [qw[ localhost:6379 ]] );
   my $mutex = $rd->lock( "foo", 10 );
   die( "failed to get a lock" )
       if ! $mutex;

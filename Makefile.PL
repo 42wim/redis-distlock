@@ -5,21 +5,21 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME           => "Redis::DistLock",
-    VERSION_FROM   => "lib/Redis/DistLock.pm",
+    NAME           => "Redis::Fast::DistLock",
+    VERSION_FROM   => "lib/Redis/Fast/DistLock.pm",
     PREREQ_PM      => {
         "Digest::SHA"  => 0,
         "MIME::Base64" => 0,
         "Redis"        => 0,
         "Time::HiRes"  => 0,
     },
-    ABSTRACT_FROM  => "lib/Redis/DistLock.pm",
+    ABSTRACT_FROM  => "lib/Redis/Fast/DistLock.pm",
     AUTHOR         => 'Simon Bertrang <janus@cpan.org>, Ryan Bastic <ryan@bastic.net>',
     META_MERGE     => {
         resources      => {
             license        => 'http://dev.perl.org/licenses/',
-            repository     => 'https://github.com/sbertrang/redis-distlock',
-            bugtracker     => 'https://github.com/sbertrang/redis-distlock/issues',
+            repository     => 'https://github.com/42wim/redis-distlock',
+            bugtracker     => 'https://github.com/42wim/redis-distlock/issues',
         },
     },
     LICENSE        => 'perl',
